@@ -32,14 +32,14 @@ public class Loan implements Identifiable {
 	@NotNull
 	private Date dateLoan;
 	
-	@ManyToOne
-	@JsonIgnoreProperties("mediaLoan")
-	private Media media;
-	
 	@Transient
 	private Date dateRent;
 	
 	private Date dateEndMedia;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("mediaLoan")
+	private Media media;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("leaser")

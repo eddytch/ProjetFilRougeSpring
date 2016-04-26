@@ -10,8 +10,12 @@ import fr.iocean.application.media.model.Media;
 import fr.iocean.application.media.model.MediaType;
 import fr.iocean.application.media.repository.MediaRepository;
 import fr.iocean.application.media.repository.MediaRepositoryCustom;
+import lombok.Getter;
+import lombok.Setter;
 
 @Service
+@Getter
+@Setter
 public class MediaService {
 	
 	@Autowired
@@ -25,22 +29,6 @@ public class MediaService {
 	
 	public List<Media> findAll(int pageNumber, Long id, String title, MediaType type) {
 		return new ArrayList<>();		
-	}
-
-	public MediaRepository getMediaRepository() {
-		return mediaRepository;
-	}
-
-	public void setMediaRepository(MediaRepository mediaRepository) {
-		this.mediaRepository = mediaRepository;
-	}
-
-	public MediaRepositoryCustom getMediaRepositoryCustom() {
-		return mediaRepositoryCustom;
-	}
-
-	public void setMediaRepositoryCustom(MediaRepositoryCustom mediaRepositoryCustom) {
-		this.mediaRepositoryCustom = mediaRepositoryCustom;
 	}
 
 }

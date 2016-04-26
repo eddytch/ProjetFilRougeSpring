@@ -1,17 +1,23 @@
 package fr.iocean.application.media.model;
 
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import fr.iocean.application.author.model.Author;
 import fr.iocean.application.loan.model.Loan;
 import fr.iocean.application.persistence.Identifiable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -36,6 +42,6 @@ public class Media implements Identifiable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Author author;
 
-	@OneToMany(mappedBy = "media")
-	private List<Loan> mediaLoan;
+	@OneToOne
+	private Loan mediaLoan;
 }
