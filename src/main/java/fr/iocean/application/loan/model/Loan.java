@@ -40,6 +40,7 @@ public class Loan implements Identifiable {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("leaser")
+
 	private Member leaser;
 
 }

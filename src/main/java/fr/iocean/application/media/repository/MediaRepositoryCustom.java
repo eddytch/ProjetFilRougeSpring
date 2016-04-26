@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 
 import fr.iocean.application.media.model.Media;
 import fr.iocean.application.media.model.MediaType;
+import org.springframework.stereotype.Repository;
+
 
 public interface MediaRepositoryCustom {
 

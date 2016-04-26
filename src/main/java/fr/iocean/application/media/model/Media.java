@@ -42,6 +42,8 @@ public class Media implements Identifiable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Author author;
 
+
 	@OneToOne
 	private Loan mediaLoan;
+
 }
