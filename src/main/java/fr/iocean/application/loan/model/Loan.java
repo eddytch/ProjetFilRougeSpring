@@ -1,10 +1,5 @@
 package fr.iocean.application.loan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import fr.iocean.application.member.model.Member;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,10 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import fr.iocean.application.media.model.Media;
-import fr.iocean.application.persistence.Identifiable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Transient;
+import fr.iocean.application.media.model.Media;
+import fr.iocean.application.member.model.Member;
+import fr.iocean.application.persistence.Identifiable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -32,7 +30,6 @@ public class Loan implements Identifiable {
 	@NotNull
 	private Date dateLoan;
 	
-	@Transient
 	private Date dateRent;
 	
 	private Date dateEndMedia;

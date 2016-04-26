@@ -18,6 +18,9 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
         return Media.class;
     }
 
+	/**
+	 * Méthode pour rechercher un média et renvoi en mode paginer
+	 */
     @Override
     public PageImpl<Media> search(Pageable pageable, String title, String authorName, MediaType type) {
         Criteria query = createSearchCriteria(pageable);
@@ -27,12 +30,26 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
         return createSearchResult(pageable, query, count);
     }
 	
+    /**
+     * Méthode pour compter les médias
+     * @param title
+     * @param authorName
+     * @param type
+     * @return
+     */
     private Long count(String title, String authorName, MediaType type) {
         Criteria query = getSession().createCriteria(entityClass).setProjection(Projections.countDistinct("id"));
         constructQuerySearch(query, title, authorName, type);
         return (Long) query.uniqueResult();
     }
 
+    /**
+     * Méthode pour contruire une recherche
+     * @param query
+     * @param title
+     * @param authorName
+     * @param type
+     */
     private void constructQuerySearch(Criteria query, String title, String authorName, MediaType type) {
 
 		if (!StringUtils.isEmpty(title)) {
