@@ -2,7 +2,7 @@ package fr.iocean.application.persistence;
 
 import java.io.Serializable;
 
-public interface IoEntity extends Serializable {
+public interface Identifiable extends Serializable {
 
 	Long getId();
 
