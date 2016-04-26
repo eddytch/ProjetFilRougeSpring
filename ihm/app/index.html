@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="ModuleApp">
+<head>
+<meta charset="utf-8" />
+
+
+<!-- Chargement des librairies javascript externes -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+
+<!-- Chargement des librairies javascript d'ANGULAR-JS -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-i18n/angular-locale_fr-fr.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
+<!-- Chargement des librairies de l'application -->
+<script src="app.js"></script>
+
+<script src="module-global/js/global.js"></script>
+<script src="module-global/js/controller/TopController.js"></script>
+<script src="module-global/js/filter/GlobalFilter.js"></script>
+
+
+<script src="module-menu/js/menu.js"></script>
+<script src="module-menu/js/controller/MenuController.js"></script>
+
+<script src="module-adherent/js/adherent.js"></script>
+<script src="module-adherent/service/adherent-service.js"></script>
+<script src="module-adherent/controller/adherent-controller.js"></script>
+<script src="module-adherent/controller/creationAdherent-controller.js"></script>
+<script src="module-adherent/controller/voirAdherent-controller.js"></script>
+
+
+
+<script src="module-media/js/Media.js"></script>
+<script src="module-media/js/controller/MediaController.js"></script>
+<script src="module-media/js/controller/CreerMediaController.js"></script>
+<script src="module-media/js/controller/VoirMediaController.js"></script>
+<script src="module-media/js/service/MediaService.js"></script>
+<script src="module-media/js/filter/MediaFilter.js"></script>
+
+<script src="module-login/js/login.js"></script>
+<script src="module-login/js/controller/LoginController.js"></script>
+<script src="module-login/js/service/LoginService.js"></script>
+
+<!-- Chargement de BOOTSTRAP-->
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+
+<!-- Chargement des STYLES propre à l'application -->
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+
+<!-- Dès la déclaration de l'application, $rootScope est défini. -->
+<!-- On peut donc afficher un de ces attributs sans controller -->
+<!-- Celui ci doit être défini ailleurs, dans les controllers par exemple. -->
+<title ng-bind="page.titre"></title>
+</head>
+<body ng-controller="TopController as topCtrl">
+	<!-- Header de la page  -->
+	<header>
+		<div class="page-header">
+			<h1>DTA-Ingénierie</h1>
+		</div>
+	</header>
+	
+	<!-- Lorsqu'on est connectée -->
+	<div ng-if="!topCtrl.isConnected()">
+		<div ng-include="'module-login/templates/login.html'"></div>
+	</div>
+	
+	<!-- Lorsqu'on est pas connecté -->
+	<div ng-if="topCtrl.isConnected()">
+	
+		<!-- Insertion du menu -->
+		<div ng-include="'module-menu/templates/menu.html'"></div>
+			
+		<!-- Contenu de la page -->
+		
+		<div>
+			<section>
+				<article>
+					<h1 ng-bind="page.titre"></h1>
+				</article>
+			</section>
+		</div>
+		
+		<!-- Zone visée par ngRoute-->
+		<ng-view></ng-view>
+	</div>
+
+	<!-- Footer -->	
+	<div>
+		<footer>
+			<div>
+				<h3>
+					Copyright by <a href="mailto:eddy.tchouague@gmail.com">DTA-Ingénierie</a>
+				</h3>
+			</div>
+		</footer>
+	</div>
+
+</body>
+</html>

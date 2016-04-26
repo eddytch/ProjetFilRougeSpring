@@ -1,0 +1,85 @@
+<div class="container">
+	<div class="responsive-table-line block-center">
+		<div class="table ">
+			<form class="form-inline" ng-submit="mediaCtrl.submit()" noValidate>
+				<div class="form-group">
+					<input class="form-control" type="text" name="titre" ng-model="mediaCtrl.select.titre" placeholder="Titre des medias" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="auteur" ng-model="mediaCtrl.select.auteur" placeholder="Auteur des medias" />
+				</div>
+				<div class="form-group">
+					<select class="form-control" name="type" ng-model="mediaCtrl.select.type">
+						<option value="" selected>Type des medias</option>
+						<option>DVD</option>
+						<option>Livre</option>
+						<option>CD</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</form>
+		</div>
+
+		<table class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Auteur</th>
+					<th>Type</th>
+					<th>Nom de l'emprunteur</th>
+					<th>Date de retour</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-show="mediaCtrl.medias==undefined">
+					<td colspan="7">Chargement des medias en cours</td>
+				</tr>
+				<tr ng-show="mediaCtrl.medias.length==0">
+					<td colspan="7">Aucun media trouvé</td>
+				</tr>
+				<tr ng-show="mediaCtrl.hasErrorProduits()">
+					<td colspan="7">Une erreur est survenue</td>
+				</tr>
+
+				<tr class="trClick" ng-repeat="media in mediaCtrl.medias" 
+				    ng-click="mediaCtrl.voirMedia(media)">
+					<td ng-bind="media.id"></td>
+					<td ng-bind="media.titre"></td>
+					<td ng-bind="media.auteur"></td>
+					<td><span class="{{media.type|TypeIcon}}"></span>
+					<td ng-bind="media.emprunteur|NomPrenom"></td>
+					<td ng-bind="media.retour|DateFormat"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<nav>
+		<ul ng-if="mediaCtrl.info==undefined">
+				<li colspan="7">Chargement en cours</li>
+		</ul>
+		
+		<ul class="pagination" ng-if="mediaCtrl.info!=undefined">
+		
+			<li class= "{{mediaCtrl.pageDisabled(true)}}">
+				<a ng-click="mediaCtrl.pagePrec()"> <span>&laquo;</span></a>
+			</li>
+			
+			<li ng-repeat="n in [] |for:mediaCtrl.info.pages" class="{{mediaCtrl.pageActive(n)}}">
+				<a ng-bind="n+1" ng-click="mediaCtrl.pageN(n)"></a>
+			</li>
+			
+			<li class="{{mediaCtrl.pageDisabled(false)}}">
+				<a ng-click="mediaCtrl.pageSuiv()"><span>&raquo;</span></a>
+			</li>
+			
+		</ul>
+	</nav>
+
+	<div ng-show="mediaCtrl.hasErrorMedias()">
+		<div ng-include="'module-media/templates/creerMedia.html'"></div>
+	</div>	
+
+</div>

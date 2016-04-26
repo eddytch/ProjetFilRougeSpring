@@ -1,0 +1,131 @@
+	<div class="container-fluid">
+		<div class="row center-block">
+			<div class="col-md-6 col-s-12 col-xs-12" id="partieRechercher">
+				<form class="form-inline">
+					<!-- champ de recherche -->
+
+					<div class="input-group" id="mainRechercher">
+					</div>
+					<a class="visible-xs visible-sm" id="rechercheAvanceLien">afficher/masquer
+						recherche avancé</a>
+				</form>
+			</div>
+		</div>
+		<div class="row center-block hidden-md hidden-lg ">
+			<div class="col-md-12 col-s-12 col-xs-12">
+				<!-- La partie de recherche avancé -->
+				<form class='form-inline' id="rechercherAvance"></form>
+			</div>
+		</div>
+		<br/>
+		<button ng-show="adherentController.pageCourante > 0" ng-click="adherentController.getPagePrecedente()">
+			Précédent
+		</button>
+		<button ng-show="adherentController.pageCourante +1 < adherentController.service.nbPages" ng-click="adherentController.getPageSuivante()">
+			Suivant
+		</button>
+		<br/>
+		<div class="responsive-table-line block-center" id="resultatRecherche">
+
+			<table id="tableauRecherche"
+				class="table table-hover table-bordered ">
+				<!-- premiere ligne contenant le titre des colonnes -->
+				<thead>
+					<tr id="premiereLigne">
+
+					</tr>
+				</thead>
+				<!-- les autres lignes du tableau
+             	...
+             	-->
+
+				<tbody id="bodyRecherche">
+					<tr ng-repeat="adherent in adherentController.adherents"> <!-- |  filter : {id : rechercher0 , nom : rechercher1 , prenom : rechercher2, date_naissance : rechercher3 } | filter : search"> -->
+						<td ng-bind="adherent.id"></td>
+						<td ng-bind="adherent.nom"></td>
+						<td ng-bind="adherent.prenom"></td>
+						<td ng-bind="adherent.email"></td>
+						<td ng-bind="adherent.date_naissance | DateFormat"></td>
+						<td ng-bind="adherent.cotisation_correcte?'Oui':'Non'"></td>
+						<td ng-bind="adherent.nombre_media"></td>
+						<td>
+							<button type="button" class="btn btn-default" ng-click="adherentController.voirAdherent(adherent)">
+								<span class="glyphicon glyphicon-zoom-in"></span>
+							</button>
+							<button type="button" class="btn btn-default" ng-click="adherentController.voirAdherent(adherent)">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script>
+			//tableau contenant le nom des colonnes
+			var tableauColonne = [ "Id adhérent", "Nom", "Prenom",
+					"Email", "Date de naissance", "A jour cotisation",
+					"Nombre de médias","Action" ];
+			var tableauDonnees = [
+					[ 8923, "dimitri lanoe", "22/10/92", "Oui", 10 ],
+					[ 9201, "nicolas jean", "23/04/91", "Oui", 8 ],
+					[ 9202, "pierre romane", "02/03/1962", "Non", 2 ],
+					[ 9944, "monsieur XYZ", "17/06/1958", "Oui", 14 ] ];
+
+			var divRech = $("<div class='row hidden-md hidden-lg'>");
+
+			//Le tableau pour les couleurs pour les colonnes
+			var tableauCouleurs = [ "text-primary", "text-info",
+					"text-success", "text-warning", "text-danger" ];
+
+			//Pour chaque nom de colonne
+			for ( var colonne in tableauColonne) {
+				var valeurColonne = tableauColonne[colonne];
+				var inputRechercherPremiere = "";
+				//Pour les trois premières colonnes
+				if (colonne < 4) {
+					//Pour ajouter les boutons de recherche lorsqu'on est en mode smartphone ou tablette
+					divRech
+							.append('<div class="input-group  rechercherAnnexe">'
+									+ '<input type="text"  ng-model="rechercher' +
+									colonne +'" ng-model-options="{ debounce: 500 }" ng-change="adherentController.getAdherents('+colonne+',rechercher' + colonne +')" name="inputRechercher" id="inputRechercher' + colonne + '" class="form-control inline" placeholder="rechercher ' + valeurColonne + '"/>'
+									+ '</div>');
+					inputRechercherPremiere = '<form class="form-inline">'
+							+ ''
+							+ '<div class="input-group">'
+							+ '<input type="text"  ng-model="rechercher' +
+							colonne +'" ng-model-options="{ debounce: 500 }" ng-change="adherentController.getAdherents('+colonne+',rechercher' + colonne +')" name="rechercher' + colonne + '" id="rechercher' + colonne + '" class="form-control rechercher hidden-sm hidden-xs form-control" />'
+						    + '</form>'
+				}
+				//On ajoute le titre de la colonne avec un bouton pour rechercher
+				$("#premiereLigne").append(
+						'<th>'+ valeurColonne + '</h2>'
+								+ inputRechercherPremiere + '</th>');
+			}
+
+			$('#rechercherAvance').append(divRech);
+
+			//On cache la recherche avancé en mode smartphone
+			$('#rechercherAvance').hide();
+			// Lors d'un clic sur le lien de recherche avancé
+			$("#rechercheAvanceLien").click(function() {
+				//On affiche ou on masque la partie de recherche avance en fonction de la visibilité de cette partie
+				$('#rechercherAvance').toggle();
+
+			});
+		</script>
+	</div>
+
+	<!-- Footer -->
+	<div>
+		<footer>
+			<div>
+				<h3>
+					Copyright by <a href="mailto:eddy.tchouague@gmail.com">DTA-Ingénierie</a>
+				</h3>
+			</div>
+		</footer>
+	</div>
+<!--
+</body>
+</html>
+-->
