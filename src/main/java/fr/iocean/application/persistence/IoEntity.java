@@ -1,4 +1,4 @@
-package fr.iocean.persistence;
+package fr.iocean.application.persistence;
 
 import java.io.Serializable;
 
