@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import fr.iocean.application.author.model.Author;
 import fr.iocean.application.loan.model.Loan;
 import fr.iocean.application.persistence.Identifiable;
 
@@ -31,9 +32,9 @@ public class Media implements Identifiable {
     @Enumerated(EnumType.STRING)
     private MediaType type ;
 
-//	@NotNull
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Author author;
+	@NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Author author;
 
 	@OneToMany(mappedBy = "media")
 	private List<Loan> mediaLoan;

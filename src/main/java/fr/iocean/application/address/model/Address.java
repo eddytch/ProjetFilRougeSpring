@@ -1,4 +1,4 @@
-package fr.iocean.application.model;
+package fr.iocean.application.address.model;
 
 import java.util.List;
 

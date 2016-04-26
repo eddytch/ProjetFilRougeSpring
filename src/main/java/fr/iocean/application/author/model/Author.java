@@ -1,4 +1,4 @@
-package fr.iocean.application.model;
+package fr.iocean.application.author.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,16 +10,21 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import fr.iocean.application.media.model.Media;
+import fr.iocean.application.persistence.Identifiable;
+
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Author {
+public class Author implements Identifiable {
 
-    @Id
+    private static final long serialVersionUID = -3201785286202614503L;
+
+	@Id
     @GeneratedValue
-    private long id ;
+    private Long id ;
 
     @Column
 	@NotEmpty

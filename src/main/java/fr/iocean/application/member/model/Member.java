@@ -12,8 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import fr.iocean.application.model.Address;
-import fr.iocean.application.model.Loan;
+import fr.iocean.application.address.model.Address;
+import fr.iocean.application.loan.model.Loan;
 import fr.iocean.application.persistence.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +24,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Setter
 public class Member implements Identifiable {
 	
+	private static final long serialVersionUID = -9156107858932394127L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
