@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import fr.iocean.application.model.Address;
 import fr.iocean.application.model.Loan;
+import fr.iocean.application.persistence.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,7 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Getter
 @Setter
-public class Member {
+public class Member implements Identifiable {
 	
 	@Id
 	@GeneratedValue

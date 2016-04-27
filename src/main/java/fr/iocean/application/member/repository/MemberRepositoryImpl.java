@@ -1,6 +1,7 @@
 package fr.iocean.application.member.repository;
 
 import fr.iocean.application.member.model.Member;
+import fr.iocean.application.repository.AbstractJpaRepository;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -39,5 +40,10 @@ public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implemen
         if (!StringUtils.isEmpty(lastName)) {
             query.add(Restrictions.like("mediaType", "%" + lastName + "%"));
         }
+    }
+
+    @Override
+    protected Class<Member> getEntityClass() {
+        return Member.class;
     }
 }
