@@ -1,14 +1,10 @@
 package fr.iocean.application.media.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import fr.iocean.application.media.model.Media;
-import fr.iocean.application.media.model.MediaType;
 import fr.iocean.application.media.repository.MediaRepository;
 import fr.iocean.application.media.repository.MediaRepositoryCustom;
 import fr.iocean.application.service.AbstractService;
@@ -32,11 +28,6 @@ public class MediaService extends AbstractService<Media> {
 //	public List<Media> findAll(int pageNumber, Long id, String title, MediaType type) {
 //		return new ArrayList<>();		
 //	}
-
-	@Override
-	protected Class<Media> getEntityClass() {
-		return Media.class;
-	}
 
 	@Override
 	protected JpaRepository<Media, Long> getJpaRepository() {

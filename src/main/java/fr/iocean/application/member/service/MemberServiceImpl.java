@@ -62,11 +62,6 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     }
 
 	@Override
-	protected Class<Member> getEntityClass() {
-		return Member.class;
-	}
-
-	@Override
 	protected JpaRepository<Member, Long> getJpaRepository() {
 		return memberRepository;
 	}

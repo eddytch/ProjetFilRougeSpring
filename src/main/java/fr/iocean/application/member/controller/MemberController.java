@@ -68,11 +68,6 @@ public class MemberController extends AbstractController<Member> {
 	}
 
 	@Override
-	protected Class<Member> getEntityClass() {
-		return Member.class;
-	}
-
-	@Override
 	protected AbstractService<Member> getService() {
 		return memberServiceImpl;
 	}

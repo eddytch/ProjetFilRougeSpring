@@ -32,11 +32,6 @@ public class UserController extends AbstractController<User> {
 	private UserService userService;
 
 	@Override
-	protected Class<User> getEntityClass() {
-		return User.class;
-	}
-
-	@Override
 	protected AbstractService<User> getService() {
 		return userService;
 	}
