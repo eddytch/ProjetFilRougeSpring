@@ -1,24 +1,51 @@
 package fr.iocean.application.user.service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import fr.iocean.application.service.AbstractService;
 import fr.iocean.application.user.model.User;
+import fr.iocean.application.user.repository.UserRepository;
+import lombok.Getter;
+import lombok.Setter;
 
-//CRUD
-public interface UserService {
-	
-	// Create
-	public User create(User user);
+//CRUD Service
+@Service
+@Transactional
+@Getter
+@Setter
+public class UserService extends AbstractService<User> {
 
-	// Read
-	public User findOneById(Long id);
+	@Autowired
+	private UserRepository userRepository;
 
-	public List<User> findAll();
+	@Autowired
+	public  PasswordEncoder passwordEncoder;
 
-	// Update
-	public User update(Long id, User user);
+	@Override
+	protected Class<User> getEntityClass() {
+		return User.class;
+	}
 
-	// Delete
-	public void delete(Long id);
+	@Override
+	protected JpaRepository<User, Long> getJpaRepository() {
+		return userRepository;
+	}
+
+
+	public User create(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return userRepository.save(user);
+	}
+
+	public User update(Long id, User user) {
+		findOneById(id);
+		user.setId(id);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return userRepository.save(user);
+	}
 
 }
