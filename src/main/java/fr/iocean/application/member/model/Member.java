@@ -1,23 +1,20 @@
 package fr.iocean.application.member.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import fr.iocean.application.address.model.Address;
-import fr.iocean.application.loan.model.Loan;
 import fr.iocean.application.persistence.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Getter
@@ -49,11 +46,9 @@ public class Member implements Identifiable {
 	@Transient
 	private Date endSubscription;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@Embedded
 	private Address address;
 	
-	//@OneToMany(mappedBy = "leaser")
-	//private List<Loan> loans;
 
 }
 

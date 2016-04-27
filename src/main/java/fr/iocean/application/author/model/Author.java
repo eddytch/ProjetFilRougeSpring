@@ -4,16 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import fr.iocean.application.media.model.Media;
 import fr.iocean.application.persistence.Identifiable;
-
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -32,7 +28,4 @@ public class Author implements Identifiable {
 
     @Column
     private String firstName;
-
-    @OneToMany(mappedBy = "author")
-    private List<Media> listMedia;
 }
