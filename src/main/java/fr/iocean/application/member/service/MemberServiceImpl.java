@@ -3,9 +3,11 @@ package fr.iocean.application.member.service;
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.repository.MemberRepository;
 import fr.iocean.application.member.repository.MemberRepositoryCustom;
+import fr.iocean.application.repository.PageableImpl;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,13 @@ public class MemberServiceImpl {
     }
 
     public List<Member> findAll(int pageNumber, Long id, String firstName, String lastName, String email){
-        return new ArrayList<>() ;
-        //return memberRepositoryImpl.search(pageNumber,id,firstName,lastName,email) ;
+        ArrayList<Member> listMembers = new ArrayList<>() ;
+        PageImpl<Member> members = memberRepositoryImpl.search(new PageableImpl(),id,firstName,lastName,email);
+        while (members.iterator().hasNext()) {
+            Member next = members.iterator().next();
+            listMembers.add(next);
+        }
+        return listMembers ;
     }
 
 

@@ -1,5 +1,7 @@
 package fr.iocean.application.loan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import fr.iocean.application.member.model.Member;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +33,7 @@ public class Loan implements Identifiable {
 	private Date dateLoan;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("mediaLoan")
 	private Media media;
 	
 	@Transient
@@ -38,7 +41,8 @@ public class Loan implements Identifiable {
 	
 	private Date dateEndMedia;
 	
-//	@ManyToOne
-//	private Member leaser;
+	@ManyToOne
+	@JsonIgnoreProperties("leaser")
+	private Member leaser;
 
 }
