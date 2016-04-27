@@ -34,7 +34,7 @@ cd angular-seed
 If you just want to start a new project without the angular-seed commit history then you can do:
 
 ```bash
-git clone --depth=1 https://github.com/angular/angular-seed.git <your-project-name>
+git clone --depth=1 https://github.com/angular/angular-seed.git <your-project-lastName>
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.

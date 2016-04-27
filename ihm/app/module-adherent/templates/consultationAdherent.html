@@ -25,7 +25,7 @@
 	</div>
 	<div class="container-fluid">
 		<section>
-			<div class="titre col-sm-offset-3 cod-sm-6 cod-xs-6">
+			<div class="title col-sm-offset-3 cod-sm-6 cod-xs-6">
 				<h2>Ajouter un Adhérent</h2>
 			</div>
 			<div>
@@ -38,19 +38,19 @@
 						</div>
 						<div class="formBlc">
 							<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
-								<label class="col-xs-12 col-s-12 col-md-12 col-lg-12" for="nom">Nom
+								<label class="col-xs-12 col-s-12 col-md-12 col-lg-12" for="lastname">Nom
 									:</label> <label class="col-xs-12 col-s-12 col-md-12 col-lg-12"
-									for="prenom">Prénom :</label>
+									for="lastName">Prénom :</label>
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<span class="topLeft input-group-addon"> <span
 									class="fa fa-user myIconWidth"></span>
 								</span>
-								<input class="form-control" id="nom" name="nom"
+								<input class="form-control" id="lastname" lastName="lastname"
 									placeholder="LANOË" type="text" required="required"
-									aria-describedby="basic-addon1" ng-model="{{media.nom}}" />
+									aria-describedby="basic-addon1" ng-model="{{media.lastname}}" />
 								<input class="form-control"
-									id="prenom" name="prenom" placeholder="Dimitri" value="{{media.prenom}}" type="text"
+									id="lastName" lastName="lastName" placeholder="Dimitri" value="{{media.lastName}}" type="text"
 									required="required" aria-describedby="basic-addon1" />
 							</div>
 							<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
@@ -59,7 +59,7 @@
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<span class="input-group-addon"> <span>@</span>
-								</span> <input id="email" name="email"
+								</span> <input id="email" lastName="email"
 									placeholder="dimitrilanoe35@gmail.com" type="email"
 									class="form-control" required="required" ng-model="{{media.email}}"
 									aria-describedby="basic-addon1" />
@@ -71,7 +71,7 @@
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<span class="input-group-addon" id="basic-addon1"> <span
 									class="fa fa-birthday-cake"></span>
-								</span> <input id="dateN" name="dateN" ng-model="{{media.dateN}}"
+								</span> <input id="dateN" lastName="dateN" ng-model="{{media.dateN}}"
 									placeholder="1992-10-22" type="date" class="form-control"
 									required="required" autocomplete="on" max="2016-12-31" />
 							</div>
@@ -89,7 +89,7 @@
 									for="numVoie">Numéro de voie </label>
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<input id="numVoie" name="numVoie" type="text"
+								<input id="numVoie" lastName="numVoie" type="text"
 									class="form-control" placeholder="4 rue Henry Becquerel" />
 							</div>
 							<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
@@ -97,7 +97,7 @@
 									for="compl">Complément :</label>
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<input id="compl" name="compl" placeholder="" type="text"
+								<input id="compl" lastName="compl" placeholder="" type="text"
 									class="form-control" />
 							</div>
 							<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
@@ -105,15 +105,15 @@
 									postal</label>
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<input id="cP" name="cP" placeholder="35400" type="text"
+								<input id="cP" lastName="cP" placeholder="35400" type="text"
 									maxlength="5" pattern="[0-9]{5}" class="form-control" />
 							</div>
 							<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
 								<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-									for="ville">Ville :</label>
+									for="town">Ville :</label>
 							</div>
 							<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<input id="ville" name="ville" placeholder="Montpellier"
+								<input id="town" lastName="town" placeholder="Montpellier"
 									type="text" class="form-control" />
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 										for="dateCotis">Cotisation payée le :</label>
 								</div>
 								<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-									<input id="dateCotis" name="dateCotis" type="date"
+									<input id="dateCotis" lastName="dateCotis" type="date"
 										class="form-control" placeholder="jj/mm/aaaa" />
 								</div>
 								<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
@@ -139,7 +139,7 @@
 										for="montantCotis">Montant de la cotisation :</label>
 								</div>
 								<div class="input-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-									<input id="montantCotis" name="montantCotis"
+									<input id="montantCotis" lastName="montantCotis"
 										placeholder="29,99" type="number" class="form-control " /> <span
 										class="input-group-addon">€</span>
 								</div>

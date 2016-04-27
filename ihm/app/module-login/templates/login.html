@@ -7,7 +7,7 @@
 	</div>
 		<div class="col-sm-12">
 			<!-- Formulaire connexion -->
-			<form name="myFormLogin" id="formLogin" class="form-horizontal" role="form"
+			<form lastName="myFormLogin" id="formLogin" class="form-horizontal" role="form"
 				  novalidate ng-submit="loginCtrl.validForm()">
 				<div>
 					<h2>Login</h2>
@@ -19,7 +19,7 @@
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-user"></span>
 							</span>
-							<input type="text" class="form-control" id="inputLogin" name="inputLogin"
+							<input type="text" class="form-control" id="inputLogin" lastName="inputLogin"
 								   ng-model="loginCtrl.login" placeholder="Login" required="required">
 						</div>												
 						<div ng-messages="myFormLogin.inputLogin.$error" class="col-sm-offset-6 col-sm-6">
@@ -34,7 +34,7 @@
 							<span class="input-group-addon">
 								<span class="fa fa-key"></span>
 							</span>
-							<input ng-model="loginCtrl.pwd" name="inputPwd"
+							<input ng-model="loginCtrl.pwd" lastName="inputPwd"
 								   type="password" class="form-control" id="inputPwd" placeholder="Password" required="required">
 						</div>												
 						<div ng-messages="myFormLogin.inputPwd.$error" class="col-sm-offset-6 col-sm-6">
