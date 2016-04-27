@@ -1,5 +1,6 @@
 package fr.iocean.application.model;
 
+import fr.iocean.application.member.model.Member;
 import lombok.Getter;
 import lombok.Setter;
 

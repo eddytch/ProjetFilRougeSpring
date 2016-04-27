@@ -1,4 +1,4 @@
-package fr.iocean.application.model;
+package fr.iocean.application.member.model;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import fr.iocean.application.model.Address;
+import fr.iocean.application.model.Loan;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
