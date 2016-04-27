@@ -1,21 +1,20 @@
 package fr.iocean.application.member.service;
 
-import fr.iocean.application.member.model.Member;
-import fr.iocean.application.member.repository.MemberRepository;
-import fr.iocean.application.member.repository.MemberRepositoryCustom;
-import fr.iocean.application.repository.PageableImpl;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import fr.iocean.application.member.model.Member;
+import fr.iocean.application.member.repository.MemberRepository;
+import fr.iocean.application.member.repository.MemberRepositoryCustom;
+import fr.iocean.application.repository.PageableImpl;
 import fr.iocean.application.service.AbstractService ;
-import fr.iocean.application.user.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by utilisateur on 27/04/2016.
