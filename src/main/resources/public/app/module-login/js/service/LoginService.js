@@ -10,7 +10,7 @@ angular.module('ModuleLogin').service('LoginService', ['$http', '$q', function($
 		
 	// Fonction pour voir si l'user est connecté
 	this.isConnected = function(){
-		return connected;
+		return true;
 	}
 	
 	// Fonction qui permet de se connecter

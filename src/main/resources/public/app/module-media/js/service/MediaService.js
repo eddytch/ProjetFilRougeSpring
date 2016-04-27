@@ -2,7 +2,7 @@ angular.module('ModuleMedia').service('MediaService', ['$http', function($http) 
 
 	var self = this;
 	var lignes = [];
-	var url = "http://10.34.10.140:8080/resource/media";
+	var url = "http://localhost:8080/api/medias";
 	var urlUnMedia = url +".accession";
 	var urlRecherche = url + ".recherche";
 	var urlInfo = urlRecherche + ".taille";
