@@ -78,22 +78,15 @@ angular.module('ModuleMedia').controller('MediaController', ['$location','$rootS
 	}
 	
 	myCtrl.pageActive = function(page){
-		if(page==pageActive){
-			return "active";
-		}
+		return (page==pageActive);
 	}
 	
-	myCtrl.pageDisabled = function(test){
-		if(test){
-			if(pageActive <= 0){
-				return "disabled";
-			}
-		}else {
-			if(pageActive >= ( myCtrl.info.pages-1)){
-				console.log( myCtrl.info.pages-1);
-				return "disabled";
-			}
-		}
+	myCtrl.precDisabled = function(test){
+		return (pageActive <= 0);
+	}
+
+	myCtrl.suivDisabled = function(test){
+		return (pageActive >= ( myCtrl.info.pages-1));
 	}
 	
 //Fonctions de redirection

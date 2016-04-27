@@ -1,9 +1,8 @@
 
 // Récupération du module des catalogue pour y ajouter le controller
-angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$rootScope', '$scope', '$http', 'MediaService', function($location, $rootScope, $scope, $http, MediaService) {
+angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$rootScope', '$scope', '$http', 'MediaService','UrlService', function($location, $rootScope, $scope, $http, MediaService,UrlService) {
 
 	var myCtrl = this;
-	var urlSave = 'http://localhost:8080/api/medias';
 	
 	$rootScope.page = $rootScope.page || {};
 	$rootScope.page.titre = "Création Media";
@@ -32,7 +31,7 @@ angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$
 					type   : myCtrl.ajout.inputType,
 					author : author
 			};
-			$http.post(urlSave, media).then(function() {
+			$http.post(UrlService.media, media).then(function() {
 				console.info('Données sauvegardées');
 			}), function() {
 				console.warn('Erreur dans la sauvegarde ...');

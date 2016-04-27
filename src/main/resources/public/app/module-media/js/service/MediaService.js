@@ -1,27 +1,22 @@
-angular.module('ModuleMedia').service('MediaService', ['$http', function($http) {
+angular.module('ModuleMedia').service('MediaService', ['$http','UrlService', function($http,UrlService) {
 
 	var self = this;
-	var lignes = [];
-	var url = "http://localhost:8080/api/medias";
-	var urlUnMedia = url +".accession";
-	var urlRecherche = url + ".recherche";
-	var urlInfo = urlRecherche + ".taille";
-	
+	var lignes = [];	
 	
 	self.getList = function(params){
-		return $http.get(urlRecherche, {params:params}).then(function(response) {
+		return $http.get(UrlService.media_recherche, {params:params}).then(function(response) {
 			return response.data;
 		});
 	}
 	
 	self.getInfo = function(params){
-		return $http.get(urlInfo, {params:params}).then(function(response) {
+		return $http.get(UrlService.media_recherche_taille, {params:params}).then(function(response) {
 			return response.data;
 		});
 	}
 	
 	self.getMedia = function(id){
-		return $http.get(urlUnMedia, {params:{id:id}}).then(function(response) {
+		return $http.get(UrlService.media_accession, {params:{id:id}}).then(function(response) {
 			return response.data;
 		});		
 	}
