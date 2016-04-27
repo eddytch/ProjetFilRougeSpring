@@ -55,7 +55,6 @@ nb-configuration.xml
 /src/main/resources/jasper/MyReports/*
 nbactions.xml
 
-ihm/node_modules
-ihm/app/bower_components
-npm-debug.log
-ihm/npm-debug.log
+**/node_modules/*
+**/bower_components/*
+
