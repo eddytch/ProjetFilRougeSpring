@@ -36,6 +36,6 @@ public class Media implements Identifiable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Author author;
 
-	@OneToMany(mappedBy = "media")
-	private List<Loan> mediaLoan;
+	//@OneToMany(mappedBy = "media")
+	//private List<Loan> mediaLoan;
 }

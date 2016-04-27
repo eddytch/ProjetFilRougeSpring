@@ -4,6 +4,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import fr.iocean.application.author.model.Author;
+import org.springframework.stereotype.Repository;
+
 
 public interface AuthorRepositoryCustom {
 

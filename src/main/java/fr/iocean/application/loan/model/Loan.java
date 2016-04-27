@@ -42,7 +42,7 @@ public class Loan implements Identifiable {
 	private Date dateEndMedia;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("leaser")
+	//@JsonIgnoreProperties("leaser")
 	private Member leaser;
 
 }

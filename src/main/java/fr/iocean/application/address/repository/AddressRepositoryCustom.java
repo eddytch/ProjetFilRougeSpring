@@ -4,6 +4,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import fr.iocean.application.address.model.Address;
+import org.springframework.stereotype.Repository;
+
 
 public interface AddressRepositoryCustom {
 

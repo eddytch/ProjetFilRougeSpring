@@ -52,8 +52,8 @@ public class Member implements Identifiable {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Address address;
 	
-	@OneToMany(mappedBy = "leaser")
-	private List<Loan> loans;
+	//@OneToMany(mappedBy = "leaser")
+	//private List<Loan> loans;
 
 }
 

@@ -9,6 +9,6 @@ import fr.iocean.application.loan.model.Loan;
 
 public interface LoanRepositoryCustom {
 
-	public PageImpl<Loan> search(Pageable pageable, Date dateLoan);
+	//public PageImpl<Loan> search(Pageable pageable, Date dateLoan);
 
 }
