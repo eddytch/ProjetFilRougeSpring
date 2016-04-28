@@ -36,7 +36,7 @@ public class UserIT extends IntegrationTest {
 
 		this.mockMvc.perform(get("/api/users"))
 				// .andDo(MockMvcResultHandlers.print())//pr afficher la requete
-					.andExpect(jsonPath("$", hasSize(3))).andExpect(status().isOk());
+				.andExpect(jsonPath("$", hasSize(3))).andExpect(status().isOk());
 	}
 
 //	@Test

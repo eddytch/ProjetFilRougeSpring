@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import fr.iocean.application.service.AbstractService ;
+import fr.iocean.application.user.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 
     public List<Member> search(int pageNumber, Long id, String firstName, String lastName, String email){
     	ArrayList<Member> listMembers = new ArrayList<>() ;
-        PageImpl<Member> members = pageImpl(pageNumber, id, firstName, lastName, email) ;
+        PageImpl<Member> members = pageImpl(id, firstName, lastName, email) ;
         while (members.iterator().hasNext()) {
             Member next = members.iterator().next();
             listMembers.add(next);
@@ -45,12 +46,17 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         return listMembers ;
     }
     
-    public List<Member> taille(Long id, String firstName, String lastName, String email){
-		return null;
+    public String size(Long id, String firstName, String lastName, String email){
+    	String jsonSize = "{ size :" ;
+    	String jsonPages = ", pages : " ;
+    	PageImpl<Member> members = pageImpl(id, firstName, lastName, email) ;
+    	jsonSize+=members.getTotalElements() ;
+    	jsonSize+=(jsonPages+members.getTotalPages()+ " }") ;
+		return jsonSize;
     }
     
     
-    private PageImpl<Member> pageImpl(int pageNumber, Long id, String firstName, String lastName, String email){
+    private PageImpl<Member> pageImpl(Long id, String firstName, String lastName, String email){
     	
         PageImpl<Member> members = memberRepositoryImpl.search(new PageableImpl(),id,firstName,lastName,email);
         return members ;
@@ -64,6 +70,16 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 	@Override
 	protected JpaRepository<Member, Long> getJpaRepository() {
 		return memberRepository;
+	}
+	
+	public Member create(Member member) {
+		return memberRepository.save(member);
+	}
+
+	public Member update(Long id, Member member) {
+		findOneById(id);
+		member.setId(id);
+		return memberRepository.save(member);
 	}
 
 }
