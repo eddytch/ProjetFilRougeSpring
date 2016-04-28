@@ -19,27 +19,30 @@ public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implemen
     public PageImpl<Member> search(Pageable pageable, Long id, String firstName, String lastName, String email) {
         Criteria query = createSearchCriteria(pageable);
         query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        constructQuerySearch(query, id, firstName, lastName);
-        Long count = count(id, firstName, lastName);
+        constructQuerySearch(query, id, firstName, lastName,email);
+        Long count = count(id, firstName, lastName,email);
         return createSearchResult(pageable, query, count);
     }
 
-    private Long count(Long id, String firstName, String lastName) {
+    private Long count(Long id, String firstName, String lastName, String email) {
         Criteria query = getSession().createCriteria(entityClass).setProjection(Projections.countDistinct("id"));
-        constructQuerySearch(query, id, firstName, lastName);
+        constructQuerySearch(query, id, firstName, lastName, email);
         return (Long) query.uniqueResult();
     }
 
-    private void constructQuerySearch(Criteria query, Long id, String firstName, String lastName) {
+    private void constructQuerySearch(Criteria query, Long id, String firstName, String lastName, String email) {
 
         if (!StringUtils.isEmpty(id)) {
-            query.add(Restrictions.like("id", "%" + id + "%"));
+            query.add(Restrictions.eq("id", id) );
         }
         if (!StringUtils.isEmpty(firstName)) {
-            query.add(Restrictions.like("", "%" + firstName + "%"));
+            query.add(Restrictions.like("firstname", "%" + firstName + "%"));
         }
         if (!StringUtils.isEmpty(lastName)) {
-            query.add(Restrictions.like("mediaType", "%" + lastName + "%"));
+            query.add(Restrictions.like("lastname", "%" + lastName + "%"));
+        }
+        if (!StringUtils.isEmpty(email)) {
+            query.add(Restrictions.like("email", "%" + email + "%"));
         }
     }
 

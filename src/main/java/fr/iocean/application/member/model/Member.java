@@ -29,8 +29,9 @@ public class Member implements Identifiable {
 	
 	@NotEmpty
 	private String lastname;
+	
 	@NotEmpty
-	private String name;
+	private String firstname;
 	@NotEmpty
 	private String email;
 
