@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import fr.iocean.application.service.AbstractService ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +21,8 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class MemberServiceImpl {
+@Service
+public class MemberServiceImpl extends AbstractService<Member> implements MemberService {
 
     @Autowired
     private MemberRepository memberRepository ;
@@ -30,18 +35,35 @@ public class MemberServiceImpl {
         return memberRepository.findOne(id) ;
     }
 
-    public List<Member> findAll(int pageNumber, Long id, String firstName, String lastName, String email){
-        ArrayList<Member> listMembers = new ArrayList<>() ;
-        PageImpl<Member> members = memberRepositoryImpl.search(new PageableImpl(),id,firstName,lastName,email);
+    public List<Member> search(int pageNumber, Long id, String firstName, String lastName, String email){
+    	ArrayList<Member> listMembers = new ArrayList<>() ;
+        PageImpl<Member> members = pageImpl(pageNumber, id, firstName, lastName, email) ;
         while (members.iterator().hasNext()) {
             Member next = members.iterator().next();
             listMembers.add(next);
         }
         return listMembers ;
     }
+    
+    public List<Member> taille(Long id, String firstName, String lastName, String email){
+		return null;
+    }
+    
+    
+    private PageImpl<Member> pageImpl(int pageNumber, Long id, String firstName, String lastName, String email){
+    	
+        PageImpl<Member> members = memberRepositoryImpl.search(new PageableImpl(),id,firstName,lastName,email);
+        return members ;
+    }
 
+	@Override
+	protected Class<Member> getEntityClass() {
+		return Member.class;
+	}
 
-
-
+	@Override
+	protected JpaRepository<Member, Long> getJpaRepository() {
+		return memberRepository;
+	}
 
 }

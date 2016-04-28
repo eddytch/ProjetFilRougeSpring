@@ -48,7 +48,7 @@ public class Member implements Identifiable {
 	
 	@Embedded
 	private Address address;
-	
+
 
 }
 
