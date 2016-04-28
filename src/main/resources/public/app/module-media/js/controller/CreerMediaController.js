@@ -13,7 +13,7 @@ angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$
 	myCtrl.types = [
 	               {key:'DVD', label:'DVD'},
 	               {key:'CD', label:'CD'},
-	               {key:'Livre', label:'Livres'}
+	               {key:'LIVRE', label:'Livres'}
 	               ];		
 	
 	// Ajout d'un media
@@ -31,15 +31,9 @@ angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$
 					type   : myCtrl.ajout.inputType,
 					author : author
 			};
-			$http.post(UrlService.media, media).then(function() {
-				console.info('Données sauvegardées');
-			}), function() {
-				console.warn('Erreur dans la sauvegarde ...');
-			}
+			MediaService.addMedia(media);
 			console.info('Formulaire valide ...');
 		}
-		
-		MediaService.add(media);
 		myCtrl.ajout = {};	
 		
 		console.log(media);

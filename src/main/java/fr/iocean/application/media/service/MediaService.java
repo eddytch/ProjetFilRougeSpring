@@ -21,8 +21,8 @@ public class MediaService extends AbstractService<Media> {
 	
 	private MediaRepositoryCustom mediaRepositoryCustom;
 	
-//	public Media findOne(Long id) {
-//		return mediaRepository.findOne(id);		
+//	public Media findOneById(Long id) {
+//		return mediaRepository.findOneFetchLoan(id);		
 //	}
 //	
 //	public List<Media> findAll(int pageNumber, Long id, String title, MediaType type) {

@@ -5,7 +5,7 @@ angular.module('ModuleMedia').filter('TypeIcon', [ function() {
 			return "glyphicon glyphicon-cd";
 		case "DVD":
 			return "glyphicon glyphicon-film";
-		case "Livre":
+		case "LIVRE":
 			return "glyphicon glyphicon-book";
 		default:
 			return "glyphicon glyphicon-remove-sign";
