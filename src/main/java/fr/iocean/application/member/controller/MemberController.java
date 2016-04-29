@@ -80,5 +80,5 @@ public class MemberController extends AbstractController<Member> {
 	protected AbstractService<Member> getService() {
 		return memberServiceImpl;
 	}
-
+	
 }
