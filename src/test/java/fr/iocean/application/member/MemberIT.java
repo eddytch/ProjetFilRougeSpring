@@ -89,6 +89,18 @@ public class MemberIT extends IntegrationTest {
 					.andExpect(jsonPath("$.pages").value(1));
 	}
 	
+	@Test
+	@WithMockUser
+	public void testGetMemberByPage() throws Exception {
+		this.mockMvc.perform(get("/api/members/search?page=0")).andExpect(jsonPath("$", hasSize(2))).andExpect(status().isOk());
+	}
+	
+	@Test
+	@WithMockUser
+	public void testGetMemberByPage2() throws Exception {
+		this.mockMvc.perform(get("/api/members/search?page=1")).andExpect(jsonPath("$", hasSize(0))).andExpect(status().isOk());
+	}
+	
 	
 	@Test
 	@WithMockUser
@@ -99,6 +111,9 @@ public class MemberIT extends IntegrationTest {
 
 		this.mockMvc.perform(get("/api/members/1000")).andExpect(jsonPath("$.id").value(1000)).andExpect(status().isOk());
 	}
+	
+	
+	
 	
 	@Test
 	@WithMockUser

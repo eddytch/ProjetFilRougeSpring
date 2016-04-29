@@ -1,15 +1,24 @@
 package fr.iocean.application.repository;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by utilisateur on 27/04/2016.
  */
+@Getter
+@Setter
+@Component
 public class PageableImpl implements Pageable {
 
     private int currentPage = 0 ;
-    private static final int  nbPerPage = 10 ;
+    private int  nbPerPage = 10 ;
+    
 
     @Override
     public int getPageNumber() {
@@ -28,41 +37,29 @@ public class PageableImpl implements Pageable {
 
     @Override
     public Sort getSort() {
-        return null;
+        return new Sort(Sort.Direction.ASC,"id");
     }
 
     @Override
     public Pageable next() {
-        PageableImpl pageable = null ;
-        try {
-            pageable = (PageableImpl) this.clone();
-            pageable.currentPage++ ;
-        }catch(CloneNotSupportedException e){
-
-        }
-        return pageable ;
+        return new PageRequest(currentPage+1,nbPerPage) ;
     }
 
     @Override
     public Pageable previousOrFirst() {
-        PageableImpl pageable = null ;
-        try {
-            pageable = (PageableImpl) this.clone();
-            if(pageable.currentPage>0)
-                pageable.currentPage-- ;
-        }catch(CloneNotSupportedException e){
-
-        }
-        return pageable ;
+    	if(currentPage>0)
+    		return new PageRequest(currentPage-1,nbPerPage) ;
+    	else 
+    		return first() ;
     }
 
     @Override
     public Pageable first() {
-        return null;
+    	return new PageRequest(0, nbPerPage) ;
     }
 
     @Override
     public boolean hasPrevious() {
-        return false;
+        return currentPage > 0;
     }
 }
