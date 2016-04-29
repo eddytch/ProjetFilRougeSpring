@@ -43,7 +43,7 @@ public class MemberController extends AbstractController<Member>{
 		
 	}
 	
-	@RequestMapping(value="/taille/",method=RequestMethod.GET)
+	@RequestMapping(value="/size/",method=RequestMethod.GET)
 	public String size(@PathVariable int page, @PathVariable Long id, @PathVariable String firstName, @PathVariable String lastName, @PathVariable String email){
 		return memberServiceImpl.size(id, firstName, lastName, email);
 		
@@ -83,11 +83,4 @@ public class MemberController extends AbstractController<Member>{
 		// TODO Auto-generated method stub
 		return (AbstractService<Member>) memberServiceImpl;
 	}
-	
-	
-	
-	
-	
-
-	
 }
