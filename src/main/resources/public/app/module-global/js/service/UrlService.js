@@ -7,5 +7,5 @@ angular.module('ModuleGlobal').service('UrlService', [ function() {
 	var url 	= "http://" + serveur + ":" + port + "/api/";
 	
 	self.medias						= url + "medias";	
-	self.adherents					= url + "adherents";
+	self.members					= url + "members";
 }]);
