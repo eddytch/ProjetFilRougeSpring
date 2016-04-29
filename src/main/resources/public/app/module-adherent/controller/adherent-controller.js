@@ -14,7 +14,7 @@ moduleAdherent.controller('AdherentController', ['$scope','$rootScope', '$locati
     this.numCritPrec = 0 ;
     this.valuePrec = "" ;
 
-    this.noms = ['id','nom','prenom','email'] ;
+    this.noms = ['id','lastname','firstname','email'] ;
 
     this.getPage = function(page){
         var rechPages = { params : { "page" : page}  } ;

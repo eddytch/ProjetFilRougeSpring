@@ -10,7 +10,7 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
 
     this.getAdherents = function(object){
 
-        pages = $http.get(UrlService.adherent_recherche_taille,object).then(
+        pages = $http.get(UrlService.members,object).then(
                 function(response){
                     self.nbPages = response.data['pages']
                 }
@@ -22,12 +22,12 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
                     var itemFromServeur = response.data[index];
                     var itemForIHM = {
                                     id : itemFromServeur.id,
-                                    nom : itemFromServeur.nom,
-                                    prenom : itemFromServeur.prenom,
+                                    nom : itemFromServeur.lastname,
+                                    prenom : itemFromServeur.firstname,
                                     email : itemFromServeur.email,
-                                    date_naissance : itemFromServeur.date_naissance,
-                                    cotisation_correcte : itemFromServeur.cotisation_correcte,
-                                    nombre_media : itemFromServeur.nombre_media
+                                    date_naissance : itemFromServeur.birthday
+//                                    cotisation_correcte : itemFromServeur.cotisation_correcte,
+//                                    nombre_media : itemFromServeur.nombre_media
                     };
                     self.adherents.push(itemForIHM);
                 }
@@ -39,7 +39,7 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
     }
 
     this.addAdherent = function(object){
-        promise = $http.post(UrlService.adherent_creation,{params : object} ).then(
+        promise = $http.post(UrlService.members,{params : object} ).then(
             function(response){
                 console.log(response) ;
             }

@@ -13,21 +13,18 @@ moduleAdherent.controller('CreationAdherentController',['$scope', '$rootScope','
         var dateCotisConv = $filter('date')($scope.dateCotis,"dd/MM/yyyy") ;
 
         var object = {
-            "nom" : $scope.nom,
-            "prenom" : $scope.prenom,
+            "lastname" : $scope.lastname,
+            "firstname" : $scope.firstname,
             "email" : $scope.email,
-            "date_naissance" : dateNConv,
-            "adresse" : {
-                "ligne1" : $scope.numVoie,
-                "ligne2" : $scope.compl,
-                "codepostal" : $scope.cP,
-                "ville" : $scope.ville
-            },
-            "cotisation" :{
-                "debut" : dateCotisConv,
-                "fin" : self.dateIncAnnee(dateCotisConv) ,
-                "montant" : $scope.montantCotis
-
+            "birthday" : $scope.birthday,
+            "payment_date" : $scope.payment_date,
+            "amount" : $scope.amount,
+            "address" : {
+                "num_street" : $scope.num_street,
+                "name_street" : $scope.name_street,
+                "pc_town" : $scope.pc_town,
+                "town" : $scope.town,
+                "country" : $scope.country
             }
         }
         self.service.addAdherent(object) ;
