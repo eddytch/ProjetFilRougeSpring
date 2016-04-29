@@ -26,7 +26,9 @@ moduleAdherent.controller('CreationAdherentController',['$scope', '$rootScope','
                 "town" : $scope.town,
                 "country" : $scope.country
             }
+       
         }
+        console.log(object);
         self.service.addAdherent(object) ;
     };
 

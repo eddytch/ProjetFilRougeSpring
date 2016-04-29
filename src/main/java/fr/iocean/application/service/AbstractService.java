@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.iocean.application.exception.NotFoundException;
@@ -35,10 +37,15 @@ public abstract class AbstractService<T extends Identifiable> {
 	}
 
 	// Read
+	public Page<T> findAll(Pageable pageable) {
+		return jpaRepository.findAll(pageable);
+	}
+
+	// Read
 	public List<T> findAll() {
 		return jpaRepository.findAll();
 	}
-
+	
 	// Update
 	public T update(Long id, T entity) {
 		findOneById(id);

@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import fr.iocean.application.persistence.Identifiable;
 import fr.iocean.application.service.AbstractService;
 
@@ -30,6 +33,11 @@ public abstract class AbstractController<T extends Identifiable> {
 		return service.findAll();
 	}
 
+	public Page<T> findAll(Pageable pageable) {
+		return service.findAll(pageable);
+	}
+
+	
 	public void update(Long id, T resource) {
 		service.update(id, resource);
 	}

@@ -10,29 +10,30 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
 
     this.getAdherents = function(object){
 
-        pages = $http.get(UrlService.members,object).then(
+    	promise = $http.get(UrlService.members,object + '/search').then(
                 function(response){
-                    self.nbPages = response.data['pages']
+                    self.adherents = response.data.content;
+                    console.log(self.adherents);
                 }
         );
-        promise = $http.get(UrlService.adherent_recherche,object).then(
-            function(response){
-                self.adherents.splice(0,self.adherents.length)
-                for(var index in response.data){
-                    var itemFromServeur = response.data[index];
-                    var itemForIHM = {
-                                    id : itemFromServeur.id,
-                                    nom : itemFromServeur.lastname,
-                                    prenom : itemFromServeur.firstname,
-                                    email : itemFromServeur.email,
-                                    date_naissance : itemFromServeur.birthday
-//                                    cotisation_correcte : itemFromServeur.cotisation_correcte,
-//                                    nombre_media : itemFromServeur.nombre_media
-                    };
-                    self.adherents.push(itemForIHM);
-                }
-            }
-        );
+//        promise = $http.get(UrlService.adherent_recherche,object).then(
+//            function(response){
+//                self.adherents.splice(0,self.adherents.length)
+//                for(var index in response.data){
+//                    var itemFromServeur = response.data[index];
+//                    var itemForIHM = {
+//                                    id : itemFromServeur.id,
+//                                    nom : itemFromServeur.lastname,
+//                                    prenom : itemFromServeur.firstname,
+//                                    email : itemFromServeur.email,
+//                                    date_naissance : itemFromServeur.birthday
+////                                    cotisation_correcte : itemFromServeur.cotisation_correcte,
+////                                    nombre_media : itemFromServeur.nombre_media
+//                    };
+//                    self.adherents.push(itemForIHM);
+//                }
+//            }
+//        );
 
         return promise ;
 

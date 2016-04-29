@@ -1,10 +1,11 @@
 package fr.iocean.application.member.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,6 @@ import fr.iocean.application.controller.AbstractController;
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.service.MemberServiceImpl;
 import fr.iocean.application.service.AbstractService;
-import fr.iocean.application.user.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,17 +34,18 @@ public class MemberController extends AbstractController<Member> {
 	private MemberServiceImpl memberServiceImpl;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public List<Member> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname,
+	public Page<Member> search(@RequestParam(value="page",required=false, defaultValue = "0") Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname,
 			@RequestParam(value="lastname",required=false) String lastname, @RequestParam(value="email",required=false) String email) {
-		return memberServiceImpl.search(page, id, firstname, lastname, email);
+		Pageable pageable = new PageRequest(page, 10);
+		return memberServiceImpl.search(pageable, id, firstname, lastname, email);
 
 	}
 
-	@RequestMapping(value="/size",method=RequestMethod.GET)
-	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname, @RequestParam(value="lastname",required=false) String lastname, @RequestParam(value="email",required=false) String email){
-		
-		return memberServiceImpl.size(id, firstname, lastname, email);
-	}
+//	@RequestMapping(value="/size",method=RequestMethod.GET)
+//	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname, @RequestParam(value="lastname",required=false) String lastname, @RequestParam(value="email",required=false) String email){
+//		
+//		return memberServiceImpl.size(id, firstname, lastname, email);
+//	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
@@ -53,9 +54,10 @@ public class MemberController extends AbstractController<Member> {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public List<Member> findAll() {
-		return super.findAll();
+	public Page<Member> findAll(@RequestParam(value="page",required=false, defaultValue = "0") Integer page,
+			@RequestParam(value="size",required=false, defaultValue = "10") Integer size) {
+		Pageable pageable = new PageRequest(page, size);
+		return super.findAll(pageable);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
