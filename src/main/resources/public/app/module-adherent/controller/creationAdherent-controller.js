@@ -20,9 +20,9 @@ moduleAdherent.controller('CreationAdherentController',['$scope', '$rootScope','
             "payment_date" : $scope.payment_date,
             "amount" : $scope.amount,
             "address" : {
-                "num_street" : $scope.num_street,
-                "name_street" : $scope.name_street,
-                "pc_town" : $scope.pc_town,
+                "numStreet" : $scope.num_street,
+                "nameStreet" : $scope.name_street,
+                "pcTown" : $scope.pc_town,
                 "town" : $scope.town,
                 "country" : $scope.country
             }

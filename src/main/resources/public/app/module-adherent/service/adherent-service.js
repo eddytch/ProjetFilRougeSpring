@@ -39,7 +39,7 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
     }
 
     this.addAdherent = function(object){
-        promise = $http.post(UrlService.members,{params : object} ).then(
+        promise = $http.post(UrlService.members,object ).then(
             function(response){
                 console.log(response) ;
             }
