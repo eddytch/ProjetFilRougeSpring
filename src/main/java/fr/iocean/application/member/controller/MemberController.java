@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,17 +30,17 @@ public class MemberController extends AbstractController<Member> {
 	@Autowired
 	private MemberServiceImpl memberServiceImpl;
 
-	@RequestMapping(value = "/search/", method = RequestMethod.GET)
-	public List<Member> search(@PathVariable int page, @PathVariable Long id, @PathVariable String firstName,
-			@PathVariable String lastName, @PathVariable String email) {
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public List<Member> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="name",required=false) String firstName,
+			@RequestParam(value="lastName",required=false) String lastName, @RequestParam(value="email",required=false) String email) {
 		return memberServiceImpl.search(page, id, firstName, lastName, email);
 
 	}
 
-	@RequestMapping(value="/size/",method=RequestMethod.GET)
-	public String size(@PathVariable int page, @PathVariable Long id, @PathVariable String firstName, @PathVariable String lastName, @PathVariable String email){
+	@RequestMapping(value="/size",method=RequestMethod.GET)
+	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="name",required=false) String firstName, @RequestParam(value="lastName",required=false) String lastName, @RequestParam(value="email",required=false) String email){
+		
 		return memberServiceImpl.size(id, firstName, lastName, email);
-
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)

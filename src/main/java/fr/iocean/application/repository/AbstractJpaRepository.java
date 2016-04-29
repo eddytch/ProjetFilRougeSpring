@@ -10,6 +10,7 @@ import org.hibernate.criterion.Order;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.iocean.application.persistence.Identifiable;
 

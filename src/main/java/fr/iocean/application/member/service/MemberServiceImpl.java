@@ -1,12 +1,14 @@
 package fr.iocean.application.member.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.repository.MemberRepository;
@@ -22,6 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Service
+@Transactional
 public class MemberServiceImpl extends AbstractService<Member> implements MemberService {
 
     @Autowired
@@ -35,11 +38,12 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         return memberRepository.findOne(id) ;
     }
 
-    public List<Member> search(int pageNumber, Long id, String firstName, String lastName, String email){
+    public List<Member> search(Integer pageNumber, Long id, String firstName, String lastName, String email){
     	ArrayList<Member> listMembers = new ArrayList<>() ;
         PageImpl<Member> members = pageImpl(id, firstName, lastName, email) ;
-        while (members.iterator().hasNext()) {
-            Member next = members.iterator().next();
+        Iterator<Member> it = members.iterator(); 
+        while (it.hasNext()) {
+            Member next = it.next();
             listMembers.add(next);
         }
         return listMembers ;
@@ -54,7 +58,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 		return jsonSize;
     }
     
-    
+    @Transactional
     private PageImpl<Member> pageImpl(Long id, String firstName, String lastName, String email){
     	
         PageImpl<Member> members = memberRepositoryImpl.search(new PageableImpl(),id,firstName,lastName,email);
