@@ -5,8 +5,8 @@ insert into user_ (id,login,password) values (1,'admin','admin');
 insert into user_ (id,login,password) values (2,'user01','user01');
 
 -- insert members test data
-INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthday,email,lastname,name,payment_date)  VALUES(1000,'France','rue des coquelicots','2','35000','Rennes',3.24,timestamp '1992-10-10','jacquet@gmail.com','jacquet','eddy',now()) ;
-INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthday,email,lastname,name,payment_date)  VALUES(1001,'UK','Street of England','2050','40080','SunTown',5.99,timestamp '1990-11-12','tchouague@gmail.com','wall','jack',now()) ;
+INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthday,email,lastname,firstname,payment_date)  VALUES(1000,'France','rue des coquelicots','2','35000','Rennes',3.24,timestamp '1992-10-10','jacquet@gmail.com','jacquet','eddy',now()) ;
+INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthday,email,lastname,firstname,payment_date)  VALUES(1001,'UK','Street of England','2050','40080','SunTown',5.99,timestamp '1990-11-12','tchouague@gmail.com','wall','jack',now()) ;
 
 -- insert author test data
 INSERT INTO author(id, first_name, last_name) VALUES (1, 'Auteur 1', 'Auteur 1');

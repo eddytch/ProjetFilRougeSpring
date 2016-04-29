@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.iocean.application.controller.AbstractController;
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.service.MemberServiceImpl;
 import fr.iocean.application.service.AbstractService;
+import fr.iocean.application.user.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,16 +34,16 @@ public class MemberController extends AbstractController<Member> {
 	private MemberServiceImpl memberServiceImpl;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public List<Member> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="name",required=false) String firstName,
-			@RequestParam(value="lastName",required=false) String lastName, @RequestParam(value="email",required=false) String email) {
-		return memberServiceImpl.search(page, id, firstName, lastName, email);
+	public List<Member> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname,
+			@RequestParam(value="lastname",required=false) String lastname, @RequestParam(value="email",required=false) String email) {
+		return memberServiceImpl.search(page, id, firstname, lastname, email);
 
 	}
 
 	@RequestMapping(value="/size",method=RequestMethod.GET)
-	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="name",required=false) String firstName, @RequestParam(value="lastName",required=false) String lastName, @RequestParam(value="email",required=false) String email){
+	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="id",required=false) Long id, @RequestParam(value="firstname",required=false) String firstname, @RequestParam(value="lastname",required=false) String lastname, @RequestParam(value="email",required=false) String email){
 		
-		return memberServiceImpl.size(id, firstName, lastName, email);
+		return memberServiceImpl.size(id, firstname, lastname, email);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -55,6 +58,12 @@ public class MemberController extends AbstractController<Member> {
 		return super.findAll();
 	}
 
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void create(@RequestBody @Valid Member resource) {
+		super.create(resource);
+	}
+	
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void update(@PathVariable Long id, @RequestBody @Valid Member member) {

@@ -36,7 +36,7 @@ public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implemen
             query.add(Restrictions.eq("id", id) );
         }
         if (!StringUtils.isEmpty(firstName)) {
-            query.add(Restrictions.like("name", "%" + firstName + "%"));
+            query.add(Restrictions.like("firstname", "%" + firstName + "%"));
         }
         if (!StringUtils.isEmpty(lastName)) {
             query.add(Restrictions.like("lastname", "%" + lastName + "%"));
