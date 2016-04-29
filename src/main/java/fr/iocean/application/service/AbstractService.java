@@ -11,17 +11,12 @@ import fr.iocean.application.persistence.Identifiable;
 
 public abstract class AbstractService<T extends Identifiable> {
 
-	protected Class<T> entityClass;
-	
 	protected JpaRepository<T, Long> jpaRepository;
-
-	protected abstract Class<T> getEntityClass();
 
 	protected abstract JpaRepository<T, Long> getJpaRepository();
 
 	@PostConstruct
 	public void init() {
-		entityClass = getEntityClass();
 		jpaRepository = getJpaRepository();
 	}
 

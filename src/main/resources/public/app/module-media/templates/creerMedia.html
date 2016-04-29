@@ -3,14 +3,14 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<!-- Formulaire connexion -->
-			<form ng-submit="creerMediaCtrl.addMedia()" lastName="myForm" novalidate
+			<form ng-submit="creerMediaCtrl.addMedia()" name="myForm" novalidate
 				  id="formLogin" class="form-horizontal" role="form">
 				 <div>
 				  	<div class="form-group">
 						<label for="inputTitre" class="col-sm-2 control-label hidden-xs">Titre</label>
 						<div class="col-xs-12 col-sm-9 col-md-6 col-lg-3">
 							<input ng-model="creerMediaCtrl.ajout.inputTitre" class="form-control"
-								   lastName="inputTitre" type="text" id="inputTitre"
+								   name="inputTitre" type="text" id="inputTitre"
 								   placeholder="Titre" required="required">
 						</div>						
 						<div ng-messages="myForm.inputTitre.$error" class="col-sm-offset-4 col-sm-7">
@@ -20,7 +20,7 @@
 					<div class="form-group">
 						<label for="inputType" class="col-sm-2 control-label hidden-xs">Type</label>
 						<div class="col-xs-12 col-sm-9 col-md-6 col-lg-3">
-							<select class="form-control" lastName="inputType"
+							<select class="form-control" name="inputType"
 								    ng-model="creerMediaCtrl.ajout.inputType" 
 								    ng-options="type.label as type.key for type in creerMediaCtrl.types"> 
 	 							<option></option>
@@ -28,15 +28,35 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputAuteur" class="col-sm-2 control-label hidden-xs">Auteur</label>
+						<label for="inputAuteurNom" class="col-sm-2 control-label hidden-xs">Nom</label>
 						<div class="col-xs-12 col-sm-9 col-md-6 col-lg-3">
-							<input ng-model="creerMediaCtrl.ajout.inputAuteur" class="form-control" lastName="inputAuteur"
-							       type="text" id="inputAuteur" placeholder="Auteur" required="required">
+							<input ng-model="creerMediaCtrl.ajout.inputAuteurNom" class="form-control" name="inputAuteurNom"
+							       type="text" id="inputAuteurNom" placeholder="Nom Auteur" required="required">
 						</div>								
-						<div ng-messages="myForm.inputAuteur.$error" class="col-sm-offset-4 col-sm-7">
+						<div ng-messages="myForm.inputAuteurNom.$error" class="col-sm-offset-4 col-sm-7">
 							<span ng-message="required">Champ requis</span> 
 						</div>
-					</div>					
+					</div>	
+					<div class="form-group">
+						<label for="inputAuteurPrenom" class="col-sm-2 control-label hidden-xs">Prénom</label>
+						<div class="col-xs-12 col-sm-9 col-md-6 col-lg-3">
+							<input ng-model="creerMediaCtrl.ajout.inputAuteurPrenom" class="form-control" name="inputAuteurPrenom"
+							       type="text" id="inputAuteurPrenom" placeholder="Prénom Auteur" required="required">
+						</div>								
+						<div ng-messages="myForm.inputAuteurPrenom.$error" class="col-sm-offset-4 col-sm-7">
+							<span ng-message="required">Champ requis</span> 
+						</div>
+					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="inputAuteur" class="col-sm-2 control-label hidden-xs">Auteur</label> -->
+<!-- 						<div class="col-xs-12 col-sm-9 col-md-6 col-lg-3"> -->
+<!-- 							<input ng-model="creerMediaCtrl.ajout.inputAuteur" class="form-control" name="inputAuteur" -->
+<!-- 							       type="text" id="inputAuteur" placeholder="Auteur" required="required"> -->
+<!-- 						</div>								 -->
+<!-- 						<div ng-messages="myForm.inputAuteur.$error" class="col-sm-offset-4 col-sm-7"> -->
+<!-- 							<span ng-message="required">Champ requis</span>  -->
+<!-- 						</div> -->
+<!-- 					</div>					 -->
 				  </div>				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">

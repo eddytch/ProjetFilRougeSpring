@@ -26,11 +26,6 @@ public class UserService extends AbstractService<User> {
 	public  PasswordEncoder passwordEncoder;
 
 	@Override
-	protected Class<User> getEntityClass() {
-		return User.class;
-	}
-
-	@Override
 	protected JpaRepository<User, Long> getJpaRepository() {
 		return userRepository;
 	}

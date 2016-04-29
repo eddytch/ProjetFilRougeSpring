@@ -1,10 +1,7 @@
 var moduleAdherent = angular.module("ModuleAdherent") ;
-moduleAdherent.service('ServiceAdherent',['$http',function($http){
+moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,UrlService){
     var self = this ;
 
-    var uri = "http://10.34.10.140:8080/resource/adherent" ;
-    var uriRech = uri+".recherche" ;
-    var uriCreation = uri+".creation" ;
     var promise = undefined ;
 
     this.adherents = [] ;
@@ -13,12 +10,12 @@ moduleAdherent.service('ServiceAdherent',['$http',function($http){
 
     this.getAdherents = function(object){
 
-        pages = $http.get(uriRech+'.taille',object).then(
+        pages = $http.get(UrlService.adherent_recherche_taille,object).then(
                 function(response){
                     self.nbPages = response.data['pages']
                 }
         );
-        promise = $http.get(uriRech,object).then(
+        promise = $http.get(UrlService.adherent_recherche,object).then(
             function(response){
                 self.adherents.splice(0,self.adherents.length)
                 for(var index in response.data){
@@ -42,7 +39,7 @@ moduleAdherent.service('ServiceAdherent',['$http',function($http){
     }
 
     this.addAdherent = function(object){
-        promise = $http.post(uriCreation,{params : object} ).then(
+        promise = $http.post(UrlService.adherent_creation,{params : object} ).then(
             function(response){
                 console.log(response) ;
             }

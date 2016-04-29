@@ -30,7 +30,6 @@ public class Media implements Identifiable {
     @GeneratedValue
     private Long id ;
 
-    @Column
 	@NotEmpty
     private String title;
 
@@ -39,7 +38,7 @@ public class Media implements Identifiable {
     private MediaType type ;
 
 	@NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Author author;
 
 

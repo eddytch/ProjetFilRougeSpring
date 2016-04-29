@@ -1,6 +1,5 @@
 package fr.iocean.application.repository;
 
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 

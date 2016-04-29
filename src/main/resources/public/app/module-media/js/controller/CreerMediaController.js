@@ -1,9 +1,8 @@
 
 // Récupération du module des catalogue pour y ajouter le controller
-angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$rootScope', '$scope', '$http', 'MediaService', function($location, $rootScope, $scope, $http, MediaService) {
+angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$rootScope', '$scope', '$http', 'MediaService','UrlService', function($location, $rootScope, $scope, $http, MediaService,UrlService) {
 
 	var myCtrl = this;
-	var urlSave = 'http://10.34.10.140:8080/resource/media.creation';
 	
 	$rootScope.page = $rootScope.page || {};
 	$rootScope.page.titre = "Création Media";
@@ -23,8 +22,16 @@ angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$
 		if ($scope.myForm.$invalid) {
 			console.warn('Erreur : formulaire invalide');
 		} else {
-			var item = myCtrl.item;
-			$http.post(urlSave, item).then(function() {
+			var author = {
+					firstName : myCtrl.ajout.inputAuteurPrenom,
+					lastName : myCtrl.ajout.inputAuteurNom
+			}
+			var media = {
+					title  : myCtrl.ajout.inputTitre,
+					type   : myCtrl.ajout.inputType,
+					author : author
+			};
+			$http.post(UrlService.media, media).then(function() {
 				console.info('Données sauvegardées');
 			}), function() {
 				console.warn('Erreur dans la sauvegarde ...');
@@ -32,12 +39,6 @@ angular.module('ModuleMedia').controller('CreerMediaController', ['$location','$
 			console.info('Formulaire valide ...');
 		}
 		
-		var media = {
-				id : myCtrl.info.items +1,
-				titre  : myCtrl.ajout.inputTitre,
-				type   : myCtrl.ajout.inputType,
-				auteur : myCtrl.ajout.inputAuteur,
-			};
 		MediaService.add(media);
 		myCtrl.ajout = {};	
 		

@@ -1,30 +1,27 @@
 package fr.iocean.application.member;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-import java.io.ObjectOutputStream.PutField;
-
-import org.hibernate.event.spi.PostCollectionRecreateEvent;
 import org.junit.Test;
-import org.springframework.http.MediaType;
-//import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.iocean.application.IntegrationTest;
-import fr.iocean.application.member.model.Member;
-import fr.iocean.application.user.model.User;
+import fr.iocean.application.member.service.MemberServiceImpl;
 
-@Sql("classpath:db/test-member-data.sql")
+//@Sql("classpath:db/test-member-data.sql")
 public class MemberIT extends IntegrationTest {
 	
+	@Autowired
+	MemberServiceImpl memberServiceImpl;
 	
 	@Test
 	public void testGetMembers() throws Exception{
-		this.mockMvc.perform(get("/api/members")).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(2))) ;
+		this.mockMvc.perform(get("/api/members"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(2))) ;
 		/*
 		.andExpect(jsonPath("$[0].country").value("France"))
 		.andExpect(jsonPath("$[0].name_street").value("rue des coquelicots"))
@@ -41,7 +38,10 @@ public class MemberIT extends IntegrationTest {
 	
 	@Test
 	public void testGetMembersSearch() throws Exception{
-		this.mockMvc.perform(get("api/members/search").param("page","0").param("email","jacquet@gmail.com")).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(1))) ;
+		this.mockMvc//.perform(get("/api/members/search").param("page","0").param("email","jacquet@gmail.com"))
+					.perform(get("/api/members/search?page=0&email=jacquet@gmail.com"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(1))) ;
 		/*
 		.andExpect(jsonPath("$[0].country").value("France"))
 		.andExpect(jsonPath("$[0].name_street").value("rue des coquelicots"))
