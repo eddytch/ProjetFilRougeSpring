@@ -71,6 +71,14 @@ public class MemberIT extends IntegrationTest {
 					.andExpect(jsonPath("$", hasSize(1))) ;
 	}
 	
+	@Test
+	public void testGetMembersSize() throws Exception{
+		this.mockMvc.perform(get("/api/members/size"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.size").value(2))
+					.andExpect(jsonPath("$.pages").value(1));
+	}
+	
 	
 	
 	/*
