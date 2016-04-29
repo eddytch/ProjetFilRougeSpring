@@ -15,6 +15,9 @@ import org.springframework.util.StringUtils;
  */
 public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implements MemberRepositoryCustom{
 
+	/**
+	 * Méthode pour rechercher un adhérent avec la pagination
+	 */
     @Override
     public PageImpl<Member> search(Pageable pageable, Long id, String firstName, String lastName, String email) {
         Criteria query = createSearchCriteria(pageable);
@@ -24,12 +27,28 @@ public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implemen
         return createSearchResult(pageable, query, count);
     }
 
+    /**
+     * Méthode pour obtenir le nombre d element pour une recherche associe
+     * @param id id de l'adherent
+     * @param firstName prenom de l'adherent	
+     * @param lastName nom de famille de l'adherent
+     * @param email email de l'adherent
+     * @return un Long permettant d'avoir le nombre d'element pour recherche asscoie
+     */
     private Long count(Long id, String firstName, String lastName, String email) {
         Criteria query = getSession().createCriteria(entityClass).setProjection(Projections.countDistinct("id"));
         constructQuerySearch(query, id, firstName, lastName, email);
         return (Long) query.uniqueResult();
     }
 
+    /**
+     * 
+     * @param query
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param email
+     */
     private void constructQuerySearch(Criteria query, Long id, String firstName, String lastName, String email) {
 
         if (!StringUtils.isEmpty(id)) {
@@ -46,6 +65,9 @@ public class MemberRepositoryImpl extends AbstractJpaRepository<Member> implemen
         }
     }
 
+    /**
+     * 
+     */
     @Override
     protected Class<Member> getEntityClass() {
         return Member.class;

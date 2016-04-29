@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import fr.iocean.application.IntegrationTest;
@@ -21,7 +22,7 @@ import fr.iocean.application.media.service.MediaService;
 public class MediaIT extends IntegrationTest {
 	
 	@Autowired
-	MediaService mediaService;
+	MediaService mediaServiceImpl;
 	
 	@Autowired
 	AuthorService authorService;
@@ -62,5 +63,34 @@ public class MediaIT extends IntegrationTest {
 					.content(jsonHelper.serialize(media))).andExpect(status().isCreated());
 		Assert.assertNotNull(authorService.findByFirstNameAndLastName(firstName, lastName));
 	}
+	
+	
+	@Test
+	@WithMockUser
+	public void testGetMediaByPage() throws Exception {
+		this.mockMvc.perform(get("/api/medias/search?page=0")).andExpect(jsonPath("$", hasSize(2))).andExpect(status().isOk());
+	}
+	
+	@Test
+	@WithMockUser
+	public void testGetMemberByPage2() throws Exception {
+		this.mockMvc.perform(get("/api/medias/search?page=1")).andExpect(jsonPath("$", hasSize(0))).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void testGetMembersSearch() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&=title=1"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(1))) ;
+	}
+	
+	/*
+	@Test
+	public void testGetMembersSearch2() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&=mediaType=CD"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(1))) ;
+	}
+	*/
 
 }
