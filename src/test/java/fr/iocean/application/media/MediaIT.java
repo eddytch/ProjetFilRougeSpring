@@ -79,7 +79,7 @@ public class MediaIT extends IntegrationTest {
 	
 	@Test
 	public void testGetMembersSearch() throws Exception{
-		this.mockMvc.perform(get("/api/medias/search?page=0&=title=1"))
+		this.mockMvc.perform(get("/api/medias/search?page=0&authorName=1"))
 					.andExpect(status().isOk())
 					.andExpect(jsonPath("$", hasSize(1))) ;
 	}

@@ -1,5 +1,7 @@
 package fr.iocean.application.media.repository;
 
+import javax.persistence.Entity;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import fr.iocean.application.author.model.Author;
 import fr.iocean.application.media.model.Media;
 import fr.iocean.application.media.model.MediaType;
 import fr.iocean.application.repository.AbstractJpaRepository;
@@ -57,7 +60,12 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
 			query.add(Restrictions.like("title", "%" + title + "%"));
 		}
 		if (!StringUtils.isEmpty(authorName)) {
-			query.add(Restrictions.like("author", "%" + authorName + "%"));
+			Criteria c = getSession().createCriteria(entityClass,"media");
+			c.createAlias("media.author", "author") ;
+			c.add(Restrictions.or(
+					Restrictions.eqOrIsNull("lastName", "%" + authorName + "%"), 
+					Restrictions.eqOrIsNull("firstName", "%" + authorName + "%")
+					) ) ;
 		}
 		if (!StringUtils.isEmpty(type)) {
 			query.add(Restrictions.like("mediaType", "%" + type + "%"));

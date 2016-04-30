@@ -9,8 +9,8 @@ INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthda
 INSERT INTO member(id,country,name_street,num_street,pc_town,town,amount,birthday,email,lastname,firstname,payment_date)  VALUES(1001,'UK','Street of England','2050','40080','SunTown',5.99,timestamp '1990-11-12','tchouague@gmail.com','wall','jack',now()) ;
 
 -- insert author test data
-INSERT INTO author(id, first_name, last_name) VALUES (1, 'Auteur 1', 'Auteur 1');
-INSERT INTO author(id, first_name, last_name) VALUES (2, 'Auteur 2', 'Auteur 2');
+INSERT INTO author(id, first_name, last_name) VALUES (1, 'Auteur 1', 'Auteur 3');
+INSERT INTO author(id, first_name, last_name) VALUES (2, 'Auteur 2', 'Auteur 4');
 
 -- insert media test data
 INSERT INTO media(id, title, type, author_id, media_loan_id) VALUES (1, 'Media 1', 'DVD', 1, null);

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 
 public interface MediaRepository extends JpaRepository<Media, Long>, MediaRepositoryCustom {
 
+	
 }
