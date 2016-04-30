@@ -56,7 +56,7 @@ public class MediaController extends AbstractController<Media>{
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void save(@RequestBody Media media) {
+	public void create(@RequestBody Media media) {
 		
 		Author author = authorService.findByFirstNameAndLastName(media.getAuthor().getFirstName(), media.getAuthor().getLastName());	
 		

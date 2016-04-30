@@ -1,7 +1,6 @@
 package fr.iocean.application.media.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import fr.iocean.application.author.model.Author;
 import fr.iocean.application.loan.model.Loan;
@@ -41,8 +42,8 @@ public class Media implements Identifiable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Author author;
 
-
 	@OneToOne
+	@JsonIgnoreProperties("media")
 	private Loan mediaLoan;
 
 }

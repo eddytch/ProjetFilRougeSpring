@@ -16,19 +16,19 @@
 			<div class="form-group">
 	    		<label class="col-sm-4 control-label">Nom auteur</label>
 	    		<div class="col-sm-8">
-	     		 	<p ng-bind="voirMediaCtrl.media.auteur" class="form-control-static"></p>
+	     		 	<p ng-bind="voirMediaCtrl.media.author | LastFirstName" class="form-control-static"></p>
 	    		</div>
 	 		</div>
 			<div class="form-group">
 	    		<label class="col-sm-4 control-label">Nom emprunteur</label>
 	    		<div class="col-sm-8">
-	     		 	<p ng-bind="voirMediaCtrl.media.emprunteur | NomPrenom" class="form-control-static"></p>
+	     		 	<p ng-bind="voirMediaCtrl.media.mediaLoan.leaser | LastFirstName" class="form-control-static"></p>
 	    		</div>
 	 		</div>
 			<div class="form-group">
 	    		<label class="col-sm-4 control-label">Date retour</label>
 	    		<div class="col-sm-8">
-	     		 	<p ng-bind="voirMediaCtrl.media.retour | DateFormat" class="form-control-static"></p>
+	     		 	<p ng-bind="voirMediaCtrl.media.mediaLoan.dateEndMedia" class="form-control-static"></p>
 	    		</div>
 	 		</div>
 	 		
@@ -43,10 +43,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="emprunteur in voirMediaCtrl.media.emprunteurs">
-							<td ng-bind="emprunteur.adherent | NomPrenom"></td>
-							<td ng-bind="emprunteur.depart | DateFormat"></td>
-							<td ng-bind="emprunteur.retour | DateFormat"></td>							
+						<tr ng-repeat="leaser in voirMediaCtrl.media.mediaLoan.leaser">
+							<td ng-bind="leaser | LastFirstName"></td>
+							<td ng-bind="leaser.dateLoan"></td>
+							<td ng-bind="leaser.dateEndMedia"></td>							
 						</tr>
 					</tbody>
 	   		 	</table>

@@ -46,10 +46,10 @@
 				<tr class="trClick" ng-repeat="media in mediaCtrl.medias" 
 				    ng-click="mediaCtrl.voirMedia(media)">
 					<td ng-bind="media.title"></td>
-					<td ng-bind="media.auteur"></td>
+					<td ng-bind="media.author|LastFirstName"></td>
 					<td><span class="{{media.type|TypeIcon}}"></span>
-					<td ng-bind="media.emprunteur|NomPrenom"></td>
-					<td ng-bind="media.retour|DateFormat"></td>
+					<td ng-bind="media.mediaLoan.leaser|LastFirstName"></td>
+					<td ng-bind="media.mediaLoan.dateEndMedia|DateFormat"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -76,9 +76,4 @@
 			
 		</ul>
 	</nav>
-
-<!-- 	<div ng-show="mediaCtrl.hasErrorMedias()"> -->
-<!-- 		<div ng-include="'module-media/templates/creerMedia.html'"></div> -->
-<!-- 	</div>	 -->
-
 </div>

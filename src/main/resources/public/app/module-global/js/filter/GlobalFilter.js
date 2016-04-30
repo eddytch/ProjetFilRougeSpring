@@ -7,10 +7,10 @@ angular.module('ModuleGlobal').filter('DateFormat', [ function() {
 	}
 }]);
 
-angular.module('ModuleGlobal').filter('NomPrenom', [ function() {
+angular.module('ModuleGlobal').filter('LastFirstName', [ function() {
 	return function(input) {
 		if (input) {
-			return input.nom + " " + input.prenom;
+			return input.lastName + " " + input.firstName;
 		}
 		return;
 	}

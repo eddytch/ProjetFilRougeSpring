@@ -1,7 +1,7 @@
 package fr.iocean.application.media.model;
 
 public enum MediaType {
-	Livre, 
+	LIVRE, 
 	CD, 
 	DVD
 }
