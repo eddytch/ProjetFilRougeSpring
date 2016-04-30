@@ -12,7 +12,10 @@ moduleAdherent.service('ServiceAdherent',['$http','UrlService',function($http,Ur
 
     	promise = $http.get(UrlService.members,object + '/search').then(
                 function(response){
-                    self.adherents = response.data.content;
+                	self.adherents.splice(0,self.adherents.length)
+                    //self.adherents = response.data.content;
+                	for(var member in response.data.content)
+                		self.adherents.push(response.data.content[member]) ;
                     console.log(self.adherents);
                 }
         );

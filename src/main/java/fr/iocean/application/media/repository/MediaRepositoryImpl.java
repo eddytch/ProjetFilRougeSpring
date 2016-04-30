@@ -80,5 +80,4 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
 		}
     }
 
-
 }

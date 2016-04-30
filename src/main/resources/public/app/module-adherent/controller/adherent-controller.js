@@ -7,7 +7,7 @@ moduleAdherent.controller('AdherentController', ['$scope','$rootScope', '$locati
     self = this ;
     this.pageCourante = 0 ;
     var service = ServiceAdherent ;
-    this.adherents = service.adherents ;
+    this.members= service.adherents ;
     this.service = service ;
     this.rechCrit = { params : {}} ;
 
