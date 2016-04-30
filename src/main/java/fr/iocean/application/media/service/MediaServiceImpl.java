@@ -41,7 +41,7 @@ public class MediaServiceImpl extends AbstractService<Media> implements MediaSer
 	}
 	
 	
-	public List<Media> search(Integer pageNumber , String title, String authorName, MediaType type){
+	public List<Media> search(Integer pageNumber , String title, String authorName, String type){
     	ArrayList<Media> listMembers = new ArrayList<>() ;
         PageImpl<Media> members = pageImpl(pageNumber, title, authorName, type) ;
         Iterator<Media> it = members.iterator(); 
@@ -52,7 +52,7 @@ public class MediaServiceImpl extends AbstractService<Media> implements MediaSer
         return listMembers ;
     }
     
-    public String size(Integer id , String title, String authorName, MediaType type){
+    public String size(Integer id , String title, String authorName, String type){
     	String jsonSize = "{ size :" ;
     	String jsonPages = ", pages : " ;
     	PageImpl<Media> medias = pageImpl(null, title, authorName, type) ;
@@ -62,7 +62,7 @@ public class MediaServiceImpl extends AbstractService<Media> implements MediaSer
     }
     
     @Transactional
-    private PageImpl<Media> pageImpl(Integer pageNumber, String title, String authorName, MediaType type){
+    private PageImpl<Media> pageImpl(Integer pageNumber, String title, String authorName, String type){
     	if(pageNumber != null)
     		((PageableImpl) pageableImpl).setCurrentPage(pageNumber);
         PageImpl<Media> medias = mediaRepositoryImpl.search(pageableImpl,title,authorName,type);

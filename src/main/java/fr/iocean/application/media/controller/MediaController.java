@@ -42,13 +42,13 @@ public class MediaController extends AbstractController<Media>{
 	AuthorService authorService;
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public List<Media> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="title",required=false) String title, @RequestParam(value="authorName",required=false) String authorName,
-			@RequestParam(value="mediaType",required=false) fr.iocean.application.media.model.MediaType mediaType ) {
+	public List<Media> search(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="title",required=false) String title, @RequestParam(value="author",required=false) String authorName,
+			@RequestParam(value="mediaType",required=false) String mediaType ) {
 		return mediaServiceImpl.search(page, title, authorName, mediaType);
 	}
 
 	@RequestMapping(value="/size",method=RequestMethod.GET)
-	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="title",required=false) String title, @RequestParam(value="authorName",required=false) String authorName, @RequestParam(value="mediaType",required=false) fr.iocean.application.media.model.MediaType mediaType){
+	public String size(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="title",required=false) String title, @RequestParam(value="authorName",required=false) String authorName, @RequestParam(value="mediaType",required=false) String mediaType){
 		
 		return mediaServiceImpl.size(page, title, authorName, mediaType);
 	}

@@ -11,6 +11,6 @@ import fr.iocean.application.media.model.MediaType;
 @Service
 public interface MediaService {
 
-	List<Media> search(Integer pageNumber , String title, String authorName, MediaType type) ;
-	String size(Integer id , String title, String authorName, MediaType type) ;
+	List<Media> search(Integer pageNumber , String title, String authorName, String type) ;
+	String size(Integer id , String title, String authorName, String type) ;
 }

@@ -3,6 +3,7 @@ package fr.iocean.application.media.repository;
 import javax.persistence.Entity;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.data.domain.PageImpl;
@@ -26,7 +27,7 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
 	 * Méthode pour rechercher un média et renvoi en mode paginer
 	 */
     @Override
-    public PageImpl<Media> search(Pageable pageable, String title, String authorName, MediaType type) {
+    public PageImpl<Media> search(Pageable pageable, String title, String authorName, String type) {
         Criteria query = createSearchCriteria(pageable);
         query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         constructQuerySearch(query, title, authorName, type);
@@ -41,8 +42,8 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
      * @param type
      * @return
      */
-    private Long count(String title, String authorName, MediaType type) {
-        Criteria query = getSession().createCriteria(entityClass).setProjection(Projections.countDistinct("id"));
+    private Long count(String title, String authorName, String type) {
+        Criteria query = getSession().createCriteria(entityClass,"media").setProjection(Projections.countDistinct("id"));
         constructQuerySearch(query, title, authorName, type);
         return (Long) query.uniqueResult();
     }
@@ -54,21 +55,28 @@ public class MediaRepositoryImpl extends AbstractJpaRepository<Media> implements
      * @param authorName
      * @param type
      */
-    private void constructQuerySearch(Criteria query, String title, String authorName, MediaType type) {
+    private void constructQuerySearch(Criteria query, String title, String authorName, String type) {
 
 		if (!StringUtils.isEmpty(title)) {
 			query.add(Restrictions.like("title", "%" + title + "%"));
 		}
 		if (!StringUtils.isEmpty(authorName)) {
-			Criteria c = getSession().createCriteria(entityClass,"media");
-			c.createAlias("media.author", "author") ;
-			c.add(Restrictions.or(
-					Restrictions.eqOrIsNull("lastName", "%" + authorName + "%"), 
-					Restrictions.eqOrIsNull("firstName", "%" + authorName + "%")
-					) ) ;
+			//query.createAlias("author", "author") ;
+			query.createCriteria("author").add(Restrictions.or(
+					Restrictions.like("lastName", "%" + authorName + "%"), 
+					Restrictions.like("firstName", "%" + authorName + "%")
+					) 
+			) ;
 		}
 		if (!StringUtils.isEmpty(type)) {
-			query.add(Restrictions.like("mediaType", "%" + type + "%"));
+			Disjunction or = Restrictions.disjunction();
+			for (MediaType media : MediaType.values()) {
+			    if (media.name().contains(type)) {
+			        or.add(Restrictions.eq("type", media));
+			    }
+			}
+			query.add(or);
+			//query.add(Restrictions.like("type", "%" + type + "%"));
 		}
     }
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 public interface MediaRepositoryCustom {
-
-	public PageImpl<Media> search(Pageable pageable, String title, String authorName, MediaType type);
+	
+	public PageImpl<Media> search(Pageable pageable, String title, String authorName, String type) ;
 
 }

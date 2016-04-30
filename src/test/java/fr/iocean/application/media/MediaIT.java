@@ -73,24 +73,45 @@ public class MediaIT extends IntegrationTest {
 	
 	@Test
 	@WithMockUser
-	public void testGetMemberByPage2() throws Exception {
+	public void testGetMediaByPage2() throws Exception {
 		this.mockMvc.perform(get("/api/medias/search?page=1")).andExpect(jsonPath("$", hasSize(0))).andExpect(status().isOk());
 	}
 	
 	@Test
-	public void testGetMembersSearch() throws Exception{
-		this.mockMvc.perform(get("/api/medias/search?page=0&authorName=1"))
+	public void testGetMediaSearch() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&author=rtz"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(0))) ;
+	}
+	
+	@Test
+	public void testGetMediaSearch2() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&author=dia"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(0))) ;
+	}
+	
+	@Test
+	public void testGetMediaSearch3() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&title=1"))
 					.andExpect(status().isOk())
 					.andExpect(jsonPath("$", hasSize(1))) ;
 	}
 	
-	/*
+	
 	@Test
-	public void testGetMembersSearch2() throws Exception{
+	public void testGetMembersSearch4() throws Exception{
 		this.mockMvc.perform(get("/api/medias/search?page=0&=mediaType=CD"))
 					.andExpect(status().isOk())
 					.andExpect(jsonPath("$", hasSize(1))) ;
 	}
-	*/
+	
+	@Test
+	public void testGetMembersSearch5() throws Exception{
+		this.mockMvc.perform(get("/api/medias/search?page=0&mediaType=DV"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(1))) ;
+	}
+	
 
 }
